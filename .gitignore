@@ -1,0 +1,20 @@
+
+# Configuration et secrets
+.env
+.env.*
+!.env.example
+
+# Dépendances et fichiers temporaires
+vendor/
+*.log
+.DS_Store
+Thumbs.db
+
+# Sauvegardes de base de données
+database.sql
+*.sql
+*.sql.gz
+
+# Fichiers téléversés par les utilisateurs
+uploads/*
+!uploads/.gitkeep

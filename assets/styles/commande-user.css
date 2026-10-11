@@ -1,0 +1,95 @@
+body {
+    font-family:'Segoe UI',Arial,sans-serif;
+    background:#F5F5DC;
+    margin:0;
+    padding:20px;
+}
+
+.container {
+    max-width:1000px;
+    margin:auto;
+}
+
+h2 {
+    text-align:center;
+    margin-bottom:40px;
+    color:#333;
+}
+
+/* ===== CARD ===== */
+.card {
+    background:white;
+    padding:20px;
+    margin-bottom:25px;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.card:hover {
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(0,0,0,0.12);
+}
+
+/* ===== HEADER ===== */
+.header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #eee;
+    padding-bottom:10px;
+    margin-bottom:15px;
+}
+
+.date {
+    font-size:14px;
+    color:#777;
+}
+
+/* ===== TOTAL ET BADGE ===== */
+.header-right {
+    display:flex;
+    align-items:center;
+    gap:15px; /* espace entre total et badge */
+}
+
+.total {
+    font-size:18px;
+    font-weight:bold;
+    color:#007bff;
+}
+
+.badge {
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.valide { background:#28a745; color:white; }
+.refuse { background:#dc3545; color:white; }
+.attente { background:#ffc107; color:black; }
+
+/* ===== PRODUITS ===== */
+.produit {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px dashed #eee;
+}
+
+.produit:last-child { border-bottom:none; }
+
+.produit b { color:#333; }
+.produit small { color:#777; }
+.prix { font-weight:bold; color:#444; }
+
+/* ===== EMPTY ===== */
+.empty {
+    text-align:center;
+    padding:60px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}

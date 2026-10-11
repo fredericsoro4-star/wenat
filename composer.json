@@ -1,0 +1,13 @@
+{
+    "name": "dell/wenat",
+    "description": "Application de gestion de factures",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frédéric Soro"
+        }
+    ],
+    "require": {
+        "picqer/php-barcode-generator": "^3.2"
+    }
+}

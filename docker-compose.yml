@@ -1,0 +1,28 @@
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_NAME: u213482981_lapinou_store
+      DB_USER: appuser
+      DB_PASS: motdepasse_fort
+    restart: always
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root_motdepasse_fort
+      MYSQL_DATABASE: u213482981_lapinou_store
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: motdepasse_fort
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+    restart: always
+
+volumes:
+  db_data:

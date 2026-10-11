@@ -1,0 +1,35 @@
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #F5F5DC;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
+
+    .box {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        max-width: 400px;
+    }
+
+    h1 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    p {
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .timer {
+        font-size: 24px;
+        font-weight: bold;
+        color: #27ae60;
+    }

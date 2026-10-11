@@ -1,0 +1,592 @@
+ :root {
+      --primary: #4CAF50;
+      --primary-light: #81C784;
+      --primary-dark: #388E3C;
+      --accent: #4E342E;
+      --light: #F5F5DC;
+      --white: #ffffff;
+      --text: #4E342E;
+      --text-light: #8D6E63;
+      --border: #D7CCC8;
+      
+      --success: #2E7D32;
+      --warning: #FF8F00;
+      --danger: #C62828;
+      --info: #0277BD;
+      
+      --radius: 8px;
+      --shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.12);
+      --transition: all 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: #F5F5DC;
+      color: var(--text);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 15px;
+    }
+
+    /* Header Styles */
+    .header-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding: 15px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      border-left: 4px solid var(--primary);
+    }
+
+    .logo-container {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 2px solid var(--primary);
+      flex-shrink: 0;
+    }
+
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .header {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin: 0 0 3px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .header p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .total-commandes {
+      background: var(--primary);
+      color: white;
+      padding: 10px 15px;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    /* Alert & Filters */
+    .alert {
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      font-size: 0.95rem;
+      border-left: 4px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: var(--transition);
+    }
+
+    .alert i {
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .filters-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+      background: var(--white);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .filter-group {
+      position: relative;
+    }
+
+    .filter-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-light);
+      font-size: 0.85rem;
+    }
+
+    .filter-group select,
+    .filter-group input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--white);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .filter-group select:focus,
+    .filter-group input:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
+    }
+
+    /* Search suggestions */
+    .search-suggestions {
+      position: absolute;
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-hover);
+      z-index: 100;
+      display: none;
+    }
+
+    .search-suggestion {
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .search-suggestion:hover {
+      background: rgba(76, 175, 80, 0.1);
+    }
+
+    /* Commandes List */
+    .commandes-container {
+      display: grid;
+      gap: 20px;
+    }
+
+    .commande-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid rgba(129, 199, 132, 0.2);
+      transition: var(--transition);
+    }
+
+    .commande-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* Commande Header */
+    .commande-header {
+      padding: 15px 20px;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 15px;
+      align-items: start;
+      background: linear-gradient(to right, rgba(76, 175, 80, 0.05), rgba(76, 175, 80, 0.02));
+      border-bottom: 1px solid rgba(129, 199, 132, 0.15);
+    }
+
+    .commande-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .commande-id {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .commande-id .user-id {
+      font-size: 0.75rem;
+      font-weight: normal;
+      color: var(--text-light);
+    }
+
+    .commande-client {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    .client-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .client-contact span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(142, 142, 142, 0.08);
+      padding: 3px 8px;
+      border-radius: 12px;
+    }
+
+    .commande-date {
+      color: var(--text-light);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .commande-montant {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--primary-dark);
+      text-align: right;
+      min-width: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .commande-montant::before {
+      content: 'Total';
+      font-size: 0.75rem;
+      font-weight: normal;
+      color: var(--text-light);
+      margin-bottom: 2px;
+    }
+
+    .commande-statut {
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+
+    .statut-en-attente { background: var(--warning); color: white; }
+    .statut-en-cours { background: var(--info); color: white; }
+    .statut-terminee { background: var(--success); color: white; }
+    .statut-annulee { background: var(--danger); color: white; }
+
+    /* Commande Details */
+    .commande-details {
+      padding: 0 20px;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+
+    .produit-item {
+      display: grid;
+      grid-template-columns: 50px 1fr auto;
+      gap: 15px;
+      padding: 15px 0;
+      align-items: center;
+      border-bottom: 1px solid rgba(215, 204, 200, 0.3);
+    }
+
+    .produit-item:last-child {
+      border-bottom: none;
+    }
+
+    .produit-image {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--radius);
+      object-fit: cover;
+      border: 1px solid var(--border);
+      background-color: #f9f9f9;
+    }
+
+    .produit-info {
+      overflow: hidden;
+    }
+
+    .produit-nom {
+      font-weight: 700;
+      margin-bottom: 5px;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    .produit-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .produit-meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(142, 142, 142, 0.05);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .produit-prix {
+      text-align: right;
+      min-width: 110px;
+    }
+
+    .prix-unitaire {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 3px;
+    }
+
+    .sous-total {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary-dark);
+    }
+
+    /* Commande Actions */
+    .commande-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 15px 20px;
+      background: linear-gradient(to right, rgba(76, 175, 80, 0.03), rgba(76, 175, 80, 0.01));
+      border-top: 1px solid rgba(129, 199, 132, 0.15);
+    }
+
+    .btn {
+      padding: 10px 15px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      transition: var(--transition);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+
+    /* Empty State */
+    .empty-state {
+      padding: 50px 20px;
+      text-align: center;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .empty-state i {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      opacity: 0.8;
+    }
+
+    .empty-state h3 {
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+    }
+
+    .empty-state p {
+      font-size: 1rem;
+      color: var(--text-light);
+      max-width: 500px;
+      margin: 0 auto 20px;
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .pagination a {
+      padding: 10px 15px;
+      border-radius: var(--radius);
+      background: var(--white);
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+
+    .pagination a.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .commande-header {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      
+      .commande-montant, .commande-statut {
+        grid-column: 1;
+        text-align: left;
+      }
+      
+      .commande-montant {
+        align-items: flex-start;
+      }
+      
+      .commande-statut {
+        justify-self: start;
+      }
+      
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .produit-item {
+        grid-template-columns: 40px 1fr auto;
+        gap: 12px;
+        padding: 12px 0;
+      }
+      
+      .commande-actions {
+        flex-wrap: wrap;
+      }
+      
+      .btn {
+        flex: 1;
+        justify-content: center;
+        font-size: 0.85rem;
+        padding: 8px 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 10px;
+      }
+      
+      .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 15px;
+      }
+      
+      .produit-item {
+        grid-template-columns: 35px 1fr;
+      }
+      
+      .produit-prix {
+        grid-column: 2;
+        text-align: left;
+        margin-top: 5px;
+      }
+      
+      .commande-actions {
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+      
+      .filters-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(76, 175, 80, 0.5);
+      border-radius: 3px;
+    }
